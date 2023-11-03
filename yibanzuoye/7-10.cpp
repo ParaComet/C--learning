@@ -64,10 +64,9 @@ int main(){
     return 0;
 }
 bool runn(int x){
-    if((x%4==0&&x%100!=0)||x%400==0){
-        return 1;
-    }
-    else return 0;
+    bool tag=0;
+    if((x%4==0&&x%100!=0)||x%400==0) tag=1;
+    return tag;
 }
 //010
 //2023-12-31 printf 2100 2000 2024-01-02

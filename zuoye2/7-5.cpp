@@ -40,7 +40,7 @@ void judge(int sum){
 
 int main(){
     scanf("%d",&nn);
-    for(int j=poo(10,nn-1)-1;j<poo(10,nn);++j){
+    for(int j=poo(10,nn-1);j<poo(10,nn);++j){
         judge(j);
     }
     //daffodils(0,nn);
