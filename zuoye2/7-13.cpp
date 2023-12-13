@@ -2,13 +2,14 @@
 #include <cmath>
 #include <cstring>
 using namespace std;
-struct book{
+typedef struct{
     int num;
     char opr;
     int time[4];
     bool fl=0;
-};
-struct book bk[12][0xffff];
+}book;
+book *p=nullptr;
+book bk[12][0xffff];
 double ton[12][5];
 int jie[0xffff][5];
 
@@ -20,6 +21,7 @@ int main(){
     memset(ton,0,sizeof(ton));
     memset(jie,0,sizeof(jie));
     scanf("%d\n",&N);
+    p->num=N;
     while(xx<=N){
         scanf("%d",&b);
         if(b==0){

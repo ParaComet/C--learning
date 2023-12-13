@@ -24,6 +24,20 @@ void cha(int *x,int *y,int *z){
     if(x<y) swa(x,y);
     return ;
 }
+void insertsort(int *l,int *r){
+    int temp=0;
+    for(int i=0;i<=r-l;++i){
+        temp=*(l+i);
+        for(int j=i-1;j>=0;--j){
+            if(*(l+j)<temp){
+                *(l+j+1)=*(l+j);
+                *(l+j)=temp;
+            }
+            else break;
+        }
+    }
+    return ;
+}   
 void quicksrt(int *l,int *r){
     int tag=0;
     int *ll,*rr;
@@ -36,12 +50,16 @@ void quicksrt(int *l,int *r){
         } 
     }
     if(tag){
+        if(r-l<=10){
+            insertsort(l,r);
+            return ;
+        }
         int *mid;
         mid=((r-l)>>1)+l;
         cha(l,mid,r);
         while(rr>ll){
-            while(*rr>=*l&&ll<rr) --rr;
-            while(*ll<=*l&&ll<rr) ++ll;
+            while(*rr<=*l&&ll<rr) --rr;
+            while(*ll>=*l&&ll<rr) ++ll;
             swa(ll,rr);
         }
         swa(l,ll);

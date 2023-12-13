@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <string.h>
 int main(){
     int *a,*b;
     int xx[12];
+    
     a=xx;
     b=xx+5;
     scanf("%d",&xx[1]);

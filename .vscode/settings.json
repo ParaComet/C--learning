@@ -1,5 +1,9 @@
 {
     "C_Cpp.errorSquiggles": "enabledIfIncludesResolve",
+    "files.associations": {
+        "iostream": "cpp",
+        "9-3.C": "cpp"
+    },
 
     /*"latex-workshop.view.pdf.viewer": "external",
 	"latex-workshop.view.pdf.external.viewer.command": "D:/apps/SumatraPDF/SumatraPDF.exe",  //绝对路径 

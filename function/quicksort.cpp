@@ -55,20 +55,20 @@ inline void quicksrt(int l1,int r1){
 
 int main(){
     int sum=0;
-    //int fll=0;
+    int fll=0;
     memset(in,0,sizeof(0));
-    //scanf("%d",&fll);
-    while(scanf("%d",&in[sum])){
+    scanf("%d",&fll);
+    /*while(scanf("%d",&in[sum])){
         if(getchar()=='\n'){
             break;
         }
         ++sum;    
-    }
-    /*for(int i=0;i<fll;++i){
-        scanf("%d",&in[i]);
     }*/
-    quicksrt(0,sum-1);
-    for(int i=0;i<sum;++i){
+    for(int i=0;i<fll;++i){
+        scanf("%d",&in[i]);
+    }
+    quicksrt(0,fll-1);
+    for(int i=0;i<fll;++i){
         printf("%d ",in[i]);
     }
     return 0;
