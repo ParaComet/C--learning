@@ -1,18 +1,17 @@
 #include "stdio.h"
 void insertsort(int *l,int *r){
-    int temp=0;
-    for(int i=0;i<=r-l;++i){
-        temp=*(l+i);
-        for(int j=i-1;j>=0;--j){
-            if(*(l+j)<temp){
-                *(l+j+1)=*(l+j);
-                *(l+j)=temp;
-            }
-            else break;
+    for(int *i=l+1;i<=r;++i){
+        int temp=*i;
+        int *j=i-1;
+        while(j>=l&&*j>temp){
+            *(j+1)=*j;
+            j--;
         }
+        *(j+1)=temp;
     }
-    return ;
-}//插入排序在这里
+    return;
+}
+//插入排序在这里
 int main(){
     int n=0;
     int a[100]={0};

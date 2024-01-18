@@ -19,54 +19,50 @@ void swa(int *a,int *b){
     return ;
 }
 void cha(int *x,int *y,int *z){
-    if(x>y) swa(x,y);
-    if(y>z) swa(y,z);
-    if(x<y) swa(x,y);
+    if(*x>*y) swa(x,y);
+    if(*y>*z) swa(y,z);
+    if(*x<*y) swa(x,y);
     return ;
 }
 void insertsort(int *l,int *r){
-    int temp=0;
-    for(int i=0;i<=r-l;++i){
-        temp=*(l+i);
-        for(int j=i-1;j>=0;--j){
-            if(*(l+j)<temp){
-                *(l+j+1)=*(l+j);
-                *(l+j)=temp;
-            }
-            else break;
+    for(int *i=l+1;i<=r;++i){
+        int temp=*i;
+        int *j=i-1;
+        while(j>=l&&*j>temp){
+            *(j+1)=*j;
+            j--;
         }
+        *(j+1)=temp;
     }
-    return ;
+    return;
 }   
 void quicksrt(int *l,int *r){
+    if(l>=r) return;
+    int *i=l,*j=r;
     int tag=0;
-    int *ll,*rr;
-    ll=l;
-    rr=r;
-    for(int i=0;i<r-l;++i){
-        if(*(l+i)>*(l+i+1)){
+    for(int *k=l;k<r;++k){
+        if(*k>*(k+1)){
             tag=1;
             break;
-        } 
-    }
-    if(tag){
-        if(r-l<=10){
-            insertsort(l,r);
-            return ;
         }
-        int *mid;
-        mid=((r-l)>>1)+l;
-        cha(l,mid,r);
-        while(rr>ll){
-            while(*rr<=*l&&ll<rr) --rr;
-            while(*ll>=*l&&ll<rr) ++ll;
-            swa(ll,rr);
-        }
-        swa(l,ll);
-        if(l<ll) quicksrt(l,ll);
-        if(ll+1<r) quicksrt(ll+1,r);
     }
-    return ;
+    if(tag==0) return;
+    if(r-l<80){
+        insertsort(l,r);
+        return;
+    }
+    cha(l,r,(r-l)/2+l);
+    int temp=*l;
+    while(i<j){
+        while(i<j&&*j>=temp) j--;
+        if(i<j) *i=*j;
+        while(i<j&&*i<=temp) i++;
+        if(i<j) *j=*i;
+    }
+    *i=temp;
+    qsort(l,i-1);
+    qsort(i+1,r);
+    return;
 }
 int main(){
     int num[MaxSize];

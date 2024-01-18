@@ -17,6 +17,74 @@ void read(int *x){
     }
     return ;
 }
+pnode creat(int data){
+    pnode head=(pnode)malloc(sizeof(tnode));
+    memset(head,0,sizeof(tnode));
+    head->data=data;
+    head->next=NULL;
+    return head;
+}
+void top_insert(pnode head,pnode L){
+    pnode temp=head;
+    L->next=temp->next;
+    temp->next=L;
+    return ;
+}
+void tail_insert(pnode head,pnode L){
+    pnode temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    temp->next=L;
+    L->next=NULL;
+    return ;
+}
+void print(pnode head){
+    pnode temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+        printf("%d ",temp->data);
+    }
+    return ;
+}
+void del(pnode head,int data){
+    pnode temp=head;
+    while(temp->next!=NULL){
+        if(temp->next->data==data){
+            pnode t=temp->next;
+            temp->next=temp->next->next;
+            free(t);
+            return ;
+        }
+        temp=temp->next;
+    }
+    return ;
+}
+void insert(pnode head,int data){
+    pnode temp=head;
+    while(temp->next!=NULL){
+        if(temp->next->data>data){
+            pnode L=creat(data);
+            L->next=temp->next;
+            temp->next=L;
+            return ;
+        }
+        temp=temp->next;
+    }
+    pnode L=creat(data);
+    temp->next=L;
+    L->next=NULL;
+    return ;
+}
+void delall(pnode head){
+    pnode temp=head;
+    while(temp->next!=NULL){
+        pnode t=temp->next;
+        temp->next=temp->next->next;
+        free(t);
+    }
+    return ;
+}
 int main(){
     int xx[MAXSIZE],sum=0;
     //int b=0;
@@ -34,6 +102,13 @@ int main(){
     for(int i=0;i<sum;++i){
         printf("%d ",xx[i]);
     }
+    printf("\n");
     //printf("%d %d %d",x[sum-1],x[sum],sum);
+    pnode head=creat(0);
+    for(int i=0;i<sum;++i){
+        top_insert(head,creat(xx[i]));
+    }
+    print(head);
+    delall(head);
     return 0;
 }
