@@ -6,6 +6,7 @@ typedef struct node{
     char name[MAXSIZE];
     int data;
     struct node *next;
+    struct node *prev;
 }tnode,*pnode;
 void read(int *x){
     char c=getchar();
@@ -22,11 +23,13 @@ pnode creat(int data){
     memset(head,0,sizeof(tnode));
     head->data=data;
     head->next=NULL;
+    head->prev=NULL;
     return head;
 }
 void top_insert(pnode head,pnode L){
     pnode temp=head;
     L->next=temp->next;
+    L->prev=temp;
     temp->next=L;
     return ;
 }
@@ -53,6 +56,7 @@ void del(pnode head,int data){
         if(temp->next->data==data){
             pnode t=temp->next;
             temp->next=temp->next->next;
+            temp->next->prev=temp;
             free(t);
             return ;
         }
@@ -67,6 +71,7 @@ void insert(pnode head,int data){
             pnode L=creat(data);
             L->next=temp->next;
             temp->next=L;
+            L->prev=temp;
             return ;
         }
         temp=temp->next;

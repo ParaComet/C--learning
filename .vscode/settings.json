@@ -2,7 +2,9 @@
     "C_Cpp.errorSquiggles": "enabledIfIncludesResolve",
     "files.associations": {
         "iostream": "cpp",
-        "9-3.C": "cpp"
+        "9-3.C": "cpp",
+        "ostream": "cpp",
+        "fstream": "cpp"
     },
 
     /*"latex-workshop.view.pdf.viewer": "external",
