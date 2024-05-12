@@ -1,13 +1,13 @@
-/*#pragma GCC optimize(1)
+#pragma GCC optimize(1)
 #pragma GCC optimize(2)
-#pragma GCC optimize(3,"Ofast","inline")*/
+#pragma GCC optimize(3,"Ofast","inline")
 #include <iostream>
 #include <cmath>
 #include <processthreadsapi.h>
 #include <string>
 #include "fstream"
 using namespace std;
-int sub[0x2ffff]={0};
+int sub[0xffff]={0};
 
 fstream file;
 fstream TestCmd;
@@ -99,7 +99,7 @@ int main(){
         printf("Error:TestCmd.txt not found!\n");
         return 0;
     }
-    Result.open("Result.txt",ios::out|ios::app);
+    Result.open("Result.txt",ios::out|ios::trunc);
     if(!Result.is_open()){
         printf("Error:Result.txt not found!\n");
         return 0;
@@ -115,7 +115,6 @@ int main(){
         TestCmd>>n>>fil;//n为数据规模fil为文件名
         std::cout<<n<<" "<<fil<<endl;
         if (n == -1) {
-            Result<<endl;
             break;
         }
         std::cout << "Please input the type of the algorithm " << endl;
@@ -148,10 +147,8 @@ int main(){
             }
             end=get_cpu_time();
             printf("%d\n",max);
-            printf("Time measured: %.9f seconds.\n", (end-begin)/re);//输出运行时间
-            printf("Total time: %.9f seconds.\n", end-begin);
-            Result<<"数据规模:"<<n<<" 重复次数:"<<re<<" 算法类型:"<<ty<<" 最大子序列和:"<<max<<" 平均运行时间:"<< (end-begin)/re<<"s";//输出到文件"Result.txt
-            Result<<" 总运行时间:"<<end-begin<<"s"<<endl;
+            printf("Time measured: %.6f seconds.\n", (end-begin)/re);//输出运行时间
+            Result<<"数据规模:"<<n<<" 重复次数:"<<re<<" 算法类型:"<<ty<<" 最大子序列和:"<<max<<"平均运行时间:"<< (end-begin)/re<<"s"<<endl;//输出到文件"Result.txt
             Result<<"------------"<<endl;
             std::cout<<endl;
             file.close();
