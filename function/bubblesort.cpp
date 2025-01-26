@@ -10,10 +10,22 @@ int main(){
     }
     for(int i=sum;i>0;--i){
         //cout<<aran[i]<<" ";
+        int flag=0;
         for(int j=1;j<i;++j){
             if(aran[j]>aran[j+1]){
                 swap(aran[j],aran[j+1]);
+                flag=1;
             }
+        }
+        if(flag==0){
+            break;
+        }
+        else if(flag==1)
+        {
+            for(int i=1;i<=sum;++i){
+                printf("%d ",aran[i]);
+            }
+            printf("\n");
         }
     }
     for(int i=1;i<=sum;++i){
